@@ -23,7 +23,7 @@ const ClerkUserButton = dynamic(
   { ssr: false }
 );
 
-const hasClerk = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+import { HAS_CLERK } from "@/lib/clerk";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -64,7 +64,7 @@ export function DashboardSidebar() {
         })}
       </nav>
       <div className="mt-auto flex items-center justify-between border-t border-border pt-4">
-        {hasClerk ? (
+        {HAS_CLERK ? (
           <ClerkUserButton />
         ) : (
           <Button asChild variant="ghost" size="sm">

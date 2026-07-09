@@ -11,7 +11,7 @@ const ClerkAuthButtons = dynamic(
   { ssr: false }
 );
 
-const hasClerk = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+import { HAS_CLERK } from "@/lib/clerk";
 
 export function Header() {
   return (
@@ -31,7 +31,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          {hasClerk ? (
+          {HAS_CLERK ? (
             <ClerkAuthButtons />
           ) : (
             <>

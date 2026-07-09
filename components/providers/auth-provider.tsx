@@ -1,11 +1,12 @@
 "use client";
 
 import { ClerkProvider } from "@clerk/nextjs";
+import { HAS_CLERK, getClerkPublishableKey } from "@/lib/clerk";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  const publishableKey = getClerkPublishableKey();
 
-  if (!publishableKey) {
+  if (!HAS_CLERK || !publishableKey) {
     return <>{children}</>;
   }
 

@@ -9,10 +9,10 @@ const SignIn = dynamic(
   { ssr: false }
 );
 
-const hasClerk = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+import { HAS_CLERK } from "@/lib/clerk";
 
 export default function SignInPage() {
-  if (!hasClerk) {
+  if (!HAS_CLERK) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-4 text-center">
         <h1 className="text-2xl font-bold">Sign in unavailable</h1>

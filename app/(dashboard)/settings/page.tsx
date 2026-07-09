@@ -7,10 +7,10 @@ const UserProfile = dynamic(
   { ssr: false, loading: () => <p className="text-muted-foreground">Loading settings...</p> }
 );
 
-const hasClerk = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+import { HAS_CLERK } from "@/lib/clerk";
 
 export default function SettingsPage() {
-  if (!hasClerk) {
+  if (!HAS_CLERK) {
     return (
       <div className="mx-auto max-w-2xl space-y-6">
         <div>
