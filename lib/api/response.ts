@@ -42,6 +42,22 @@ export function apiError(error: unknown) {
     );
   }
 
+  if (error && typeof error === "object" && "code" in error) {
+    const prismaError = error as { code?: string; message?: string };
+    if (prismaError.code === "P1001" || prismaError.code === "P1017") {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "DATABASE_UNAVAILABLE",
+            message: "Database is not connected. Please try again shortly.",
+          },
+        },
+        { status: 503 }
+      );
+    }
+  }
+
   console.error("Unhandled API error:", error);
   return NextResponse.json(
     {

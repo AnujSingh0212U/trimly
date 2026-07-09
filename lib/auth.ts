@@ -1,8 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { authService } from "@/services/auth.service";
 import { ForbiddenError, UnauthorizedError } from "@/lib/api/errors";
+import { isClerkConfigured } from "@/lib/clerk";
 import type { User } from "@prisma/client";
-
 export async function getAuthUser(): Promise<User> {
   const { userId: clerkId } = await auth();
   if (!clerkId) throw new UnauthorizedError();
@@ -30,13 +30,13 @@ export async function getAuthUser(): Promise<User> {
 }
 
 export async function getOptionalAuthUser(): Promise<User | null> {
+  if (!isClerkConfigured()) return null;
   try {
     return await getAuthUser();
   } catch {
     return null;
   }
 }
-
 export async function requireAdmin(): Promise<User> {
   const user = await getAuthUser();
   if (user.role !== "ADMIN") {

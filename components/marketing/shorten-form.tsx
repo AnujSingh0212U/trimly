@@ -46,8 +46,8 @@ export function ShortenForm({ compact = false }: ShortenFormProps) {
       setResult(json.data);
       toast.success("Link created successfully!");
       reset();
-    } catch {
-      toast.error("Something went wrong");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Something went wrong");
     }
   };
 
