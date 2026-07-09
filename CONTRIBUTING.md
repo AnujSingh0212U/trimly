@@ -24,4 +24,4 @@ Thank you for your interest in Trimly!
 
 ## Maintainer
 
-**AnujSingh0212U** — [@AnujSingh0212U](https://github.com/AnujSingh0212U)
+**Anuj Singh** — [@AnujSingh0212U](https://github.com/AnujSingh0212U) · singhanuj112411@gmail.com

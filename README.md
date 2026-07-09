@@ -23,7 +23,8 @@ A production-ready URL shortener SaaS with analytics, QR codes, password protect
 
 | | |
 |---|---|
-| **Owner** | [AnujSingh0212U](https://github.com/AnujSingh0212U) |
+| **Owner** | [Anuj Singh](https://github.com/AnujSingh0212U) |
+| **Email** | singhanuj112411@gmail.com |
 | **Live URL** | [trimly-url-shortener.vercel.app](https://trimly-url-shortener.vercel.app) |
 | **Stack** | Next.js 15 · PostgreSQL · Prisma · Clerk · Tailwind · Framer Motion |
 
@@ -219,10 +220,10 @@ npm run test:e2e     # Playwright E2E (landing, pricing, 404)
 
 ## Author
 
-**AnujSingh0212U** — [@AnujSingh0212U](https://github.com/AnujSingh0212U)
+**Anuj Singh** — [@AnujSingh0212U](https://github.com/AnujSingh0212U) · singhanuj112411@gmail.com
 
 ---
 
 ## License
 
-MIT © [AnujSingh0212U](https://github.com/AnujSingh0212U)
+MIT © [Anuj Singh](https://github.com/AnujSingh0212U)
