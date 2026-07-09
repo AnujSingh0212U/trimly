@@ -6,12 +6,12 @@
 
 A production-ready URL shortener SaaS with analytics, QR codes, password protection, and an admin panel.
 
-[![Live Demo](https://img.shields.io/badge/Deploy-Vercel-0D9488?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/new/clone?repository-url=https://github.com/AnujSingh0212U/trimly&project-name=trimly&repository-name=trimly)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-0D9488?style=for-the-badge&logo=vercel&logoColor=white)](https://trimly-lake.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-7C3AED?style=for-the-badge)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 
-**[GitHub Repo](https://github.com/AnujSingh0212U/trimly)** · **[Deploy on Vercel](https://vercel.com/new/clone?repository-url=https://github.com/AnujSingh0212U/trimly)** · **[Report Bug](https://github.com/AnujSingh0212U/trimly/issues)**
+**[Live App](https://trimly-lake.vercel.app)** · **[GitHub Repo](https://github.com/AnujSingh0212U/trimly)** · **[Report Bug](https://github.com/AnujSingh0212U/trimly/issues)**
 
 </div>
 
@@ -25,8 +25,8 @@ A production-ready URL shortener SaaS with analytics, QR codes, password protect
 |---|---|
 | **Owner** | [Anuj Singh](https://github.com/AnujSingh0212U) |
 | **Email** | singhanuj112411@gmail.com |
+| **Live URL** | [trimly-lake.vercel.app](https://trimly-lake.vercel.app) |
 | **Repository** | [github.com/AnujSingh0212U/trimly](https://github.com/AnujSingh0212U/trimly) |
-| **Deploy** | [One-click Vercel deploy](https://vercel.com/new/clone?repository-url=https://github.com/AnujSingh0212U/trimly) |
 | **Stack** | Next.js 15 · PostgreSQL · Prisma · Clerk · Tailwind · Framer Motion |
 
 ---
