@@ -24,4 +24,4 @@ Thank you for your interest in Trimly!
 
 ## Maintainer
 
-**Shashank Kumar Singh** — [@shashank-4bt](https://github.com/shashank-4bt)
+**AnujSingh0212U** — [@AnujSingh0212U](https://github.com/AnujSingh0212U)

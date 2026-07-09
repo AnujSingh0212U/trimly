@@ -11,7 +11,7 @@ A production-ready URL shortener SaaS with analytics, QR codes, password protect
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 
-**[Live App](https://trimly-url-shortener.vercel.app)** · **[Report Bug](https://github.com/shashank-4bt/trimly/issues)** · **[Request Feature](https://github.com/shashank-4bt/trimly/issues)**
+**[Live App](https://trimly-url-shortener.vercel.app)** · **[Report Bug](https://github.com/AnujSingh0212U/trimly/issues)** · **[Request Feature](https://github.com/AnujSingh0212U/trimly/issues)**
 
 </div>
 
@@ -23,7 +23,7 @@ A production-ready URL shortener SaaS with analytics, QR codes, password protect
 
 | | |
 |---|---|
-| **Owner** | [Shashank Kumar Singh](https://github.com/shashank-4bt) |
+| **Owner** | [AnujSingh0212U](https://github.com/AnujSingh0212U) |
 | **Live URL** | [trimly-url-shortener.vercel.app](https://trimly-url-shortener.vercel.app) |
 | **Stack** | Next.js 15 · PostgreSQL · Prisma · Clerk · Tailwind · Framer Motion |
 
@@ -93,7 +93,7 @@ A production-ready URL shortener SaaS with analytics, QR codes, password protect
 ### Installation
 
 ```bash
-git clone https://github.com/shashank-4bt/trimly.git
+git clone https://github.com/AnujSingh0212U/trimly.git
 cd trimly
 npm install
 
@@ -219,10 +219,10 @@ npm run test:e2e     # Playwright E2E (landing, pricing, 404)
 
 ## Author
 
-**Shashank Kumar Singh** — [@shashank-4bt](https://github.com/shashank-4bt)
+**AnujSingh0212U** — [@AnujSingh0212U](https://github.com/AnujSingh0212U)
 
 ---
 
 ## License
 
-MIT © [Shashank Kumar Singh](https://github.com/shashank-4bt)
+MIT © [AnujSingh0212U](https://github.com/AnujSingh0212U)
