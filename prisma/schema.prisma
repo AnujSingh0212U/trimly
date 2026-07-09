@@ -1,0 +1,222 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
+enum DeviceType {
+  DESKTOP
+  MOBILE
+  TABLET
+  BOT
+  UNKNOWN
+}
+
+model User {
+  id            String     @id @default(cuid())
+  clerkId       String     @unique
+  email         String     @unique
+  firstName     String?
+  lastName      String?
+  imageUrl      String?
+  role          UserRole   @default(USER)
+  status        UserStatus @default(ACTIVE)
+  bio           String?
+  website       String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  lastLoginAt   DateTime?
+
+  urls          Url[]
+  sessions      Session[]
+  apiKeys       ApiKey[]
+  auditLogs     AuditLog[]
+  refreshTokens RefreshToken[]
+
+  @@index([email])
+  @@index([role])
+  @@index([status])
+  @@map("users")
+}
+
+model Url {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  originalUrl     String
+  title           String?
+  description     String?
+  userId          String?
+  guestSessionId  String?
+  passwordHash    String?
+  expiresAt       DateTime?
+  maxClicks       Int?
+  clickCount      Int       @default(0)
+  isActive        Boolean   @default(true)
+  isCustomSlug    Boolean   @default(false)
+  utmSource       String?
+  utmMedium       String?
+  utmCampaign     String?
+  utmTerm         String?
+  utmContent      String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clicks Click[]
+
+  @@index([userId])
+  @@index([guestSessionId])
+  @@index([createdAt])
+  @@index([expiresAt])
+  @@index([isActive])
+  @@map("urls")
+}
+
+model Click {
+  id             String     @id @default(cuid())
+  urlId          String
+  ipAddress      String?
+  userAgent      String?
+  browser        String?
+  os             String?
+  device         DeviceType @default(UNKNOWN)
+  country        String?
+  city           String?
+  region         String?
+  referrer       String?
+  language       String?
+  screenSize     String?
+  platform       String?
+  utmSource      String?
+  utmMedium      String?
+  utmCampaign    String?
+  utmTerm        String?
+  utmContent     String?
+  visitorHash    String?
+  isUnique       Boolean    @default(true)
+  isReturning    Boolean    @default(false)
+  createdAt      DateTime   @default(now())
+
+  url Url @relation(fields: [urlId], references: [id], onDelete: Cascade)
+
+  @@index([urlId])
+  @@index([urlId, createdAt])
+  @@index([visitorHash])
+  @@index([country])
+  @@index([createdAt])
+  @@map("clicks")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String?
+  guestId      String?  @unique
+  ipAddress    String?
+  userAgent    String?
+  lastActiveAt DateTime @default(now())
+  createdAt    DateTime @default(now())
+  expiresAt    DateTime
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([guestId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model ApiKey {
+  id          String    @id @default(cuid())
+  userId      String
+  name        String
+  keyHash     String    @unique
+  keyPrefix   String
+  lastUsedAt  DateTime?
+  expiresAt   DateTime?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([keyHash])
+  @@map("api_keys")
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  action     String
+  entityType String
+  entityId   String?
+  metadata   Json?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([action])
+  @@index([entityType])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  email     String
+  tokenHash String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([tokenHash])
+  @@map("password_reset_tokens")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([tokenHash])
+  @@map("refresh_tokens")
+}
+
+model SiteSettings {
+  id                  String   @id @default("default")
+  siteName            String   @default("Trimly")
+  siteDescription     String   @default("Short links. Smart analytics.")
+  allowGuestShorten   Boolean  @default(true)
+  defaultSlugLength   Int      @default(7)
+  maxUrlsPerUser      Int      @default(1000)
+  maintenanceMode     Boolean  @default(false)
+  revenuePlaceholder  Float    @default(0)
+  updatedAt           DateTime @updatedAt
+
+  @@map("site_settings")
+}
