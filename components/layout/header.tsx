@@ -1,10 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
+import dynamic from "next/dynamic";
 import { Logo } from "@/components/shared/logo";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
+
+const ClerkAuthButtons = dynamic(
+  () => import("./clerk-auth-buttons").then((m) => m.ClerkAuthButtons),
+  { ssr: false }
+);
+
+const hasClerk = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
 
 export function Header() {
   return (
@@ -24,23 +31,18 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <SignedOut>
-            <SignInButton mode="modal">
-              <Button variant="ghost" size="sm">
-                Sign In
+          {hasClerk ? (
+            <ClerkAuthButtons />
+          ) : (
+            <>
+              <Button asChild variant="ghost" size="sm">
+                <Link href="/sign-in">Sign In</Link>
               </Button>
-            </SignInButton>
-            <SignUpButton mode="modal">
-              <Button variant="gradient" size="sm">
-                Get Started
+              <Button asChild variant="gradient" size="sm">
+                <Link href="/sign-up">Get Started</Link>
               </Button>
-            </SignUpButton>
-          </SignedOut>
-          <SignedIn>
-            <Button asChild variant="gradient" size="sm">
-              <Link href="/dashboard">Dashboard</Link>
-            </Button>
-          </SignedIn>
+            </>
+          )}
         </div>
       </div>
     </header>

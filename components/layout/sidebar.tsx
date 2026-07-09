@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
 import {
   LayoutDashboard,
   Link2,
@@ -17,6 +16,14 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const ClerkUserButton = dynamic(
+  () => import("./clerk-user-button").then((m) => m.ClerkUserButton),
+  { ssr: false }
+);
+
+const hasClerk = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -57,7 +64,13 @@ export function DashboardSidebar() {
         })}
       </nav>
       <div className="mt-auto flex items-center justify-between border-t border-border pt-4">
-        <UserButton afterSignOutUrl="/" />
+        {hasClerk ? (
+          <ClerkUserButton />
+        ) : (
+          <Button asChild variant="ghost" size="sm">
+            <Link href="/">Home</Link>
+          </Button>
+        )}
         <ThemeToggle />
       </div>
     </>

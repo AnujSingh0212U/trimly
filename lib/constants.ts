@@ -1,6 +1,17 @@
 export const APP_NAME = "Trimly";
 export const APP_TAGLINE = "Short links. Smart analytics. Built for teams.";
-export const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+
+function resolveAppUrl(): string {
+  if (process.env.NEXT_PUBLIC_APP_URL) {
+    return process.env.NEXT_PUBLIC_APP_URL;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "http://localhost:3000";
+}
+
+export const APP_URL = resolveAppUrl();
 
 export const DEFAULT_SLUG_LENGTH = 7;
 export const MAX_SLUG_LENGTH = 32;
